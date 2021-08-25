@@ -5,8 +5,9 @@ import { activoContext } from './context/ActivoProvider'
 import { useContext } from 'react'
 import Equipo from './Equipo'
 import Buscador from './Buscador'
+import Navbar from './Navbar'
 
-const Admin = (props) => {
+const Home = (props) => {
     
     const {setActivo} = useContext(activoContext)
    
@@ -19,14 +20,16 @@ const Admin = (props) => {
             props.history.push('/')
             setActivo(false)
         }
+       
     },[props.history, props.usuario, setActivo])
 
     return (
         <div className='row d-flex text-center align-items-center flex-column'>
+            <Navbar />
             <Buscador/>
             <Equipo/>
         </div>
     )
 }
 
-export default withRouter(Admin)
+export default withRouter(Home)

@@ -1,32 +1,27 @@
 import React from 'react'
 import { Formik, Form, Field, FieldArray } from 'formik'
 import axios from 'axios'
-import { activoContext } from './context/ActivoProvider'
-import { useContext } from 'react'
+import TarjetaBusqueda from './TarjetaBusqueda'
+
 
 
 const Buscador = () => {
-    const {equipo1, setEquipo1, equipo2, setEquipo2} = useContext(activoContext)
-    const agregarEquipo1 =(heroe)=>{
-        let error = ''
-        if(equipo1.length > 5){
-            error = 'El maximo permitido son 6 superheroes'
-            return console.log(error) 
+
+    let resultado = []
+    let contador = 3
+    let mostrar = []
+        const siguiente = async(heroes) =>{
+                contador+=3
+                resultado = await heroes.splice(0, contador)
+                mostrar = await resultado.slice(contador-3, resultado.length)
         }
-       setEquipo1([...equipo1, heroe])
-       console.log(equipo1)
-       localStorage.setItem('equipo1', equipo1)
-    }
-    const agregarEquipo2 =(heroe)=>{
-        let error = ''
-        if(equipo2.length > 5){
-            error = 'El maximo permitido son 6 superheroes'
-            return console.log(error) 
+
+        const anterior = async(heroes) =>{
+            contador-=3
+            resultado = await heroes.splice(0, contador)
+            mostrar = await resultado.slice(contador-3, resultado.length)
         }
-       setEquipo2([...equipo2, heroe])
-       console.log(equipo1)
-       localStorage.setItem('equipo2', equipo2)
-    }
+
     return (
         <>
             <Formik
@@ -40,9 +35,13 @@ const Buscador = () => {
                     }
                 }}
                 onSubmit={async(valores)=>{
-                    const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
-                    valores.heroes = await res.data.results
-                    console.log(valores.heroes)
+                    try {
+                        const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
+                        valores.heroes = await res.data.results
+                    } catch (error) {
+                        console.log('Error ', error)
+                    }
+                  
                 }}
             >
             {({values, errors})=>(
@@ -69,40 +68,50 @@ const Buscador = () => {
                                     const {form} = fieldArrayProps
                                     const {values} = form
                                     const {heroes} = values
-                                    return <div className='mt-3 col-12 d-flex flex-column align-items-center'>
+                                    if(heroes.length > 3){
+                                        mostrar = heroes.slice(contador-3, contador)
+                                    }else{
+                                        mostrar = heroes
+                                    }
+            
+                                    return <div className='mt-3 col-12  d-flex flex-column align-items-center'>
                                         {
-                                            heroes.length === 0 ? 'Por favor busca un superheroe' :
-                                            heroes.map((heroe, index) => (
-                                                <div key={index} className='col-12 d-flex'>
-                                                    <div className="card mb-3 " >
-                                                        <div className="row g-0 d-flex justify-content-center text-center">
-                                                            <div className="col-6 col-md-4">
-                                                                <img src={heroe.image.url} className="img-fluid rounded-start" alt="..."/>
-                                                            </div>
-                                                            <div className="col-6 col-md-8">
-                                                                <div className="card-body">
-                                                                    <h5 className="card-title mb-5">{heroe.name}</h5>
-                                                                    <div className='d-flex align-items-center justify-content-center'>
-                                                                        <h6>Equipo 1</h6>
-                                                                        <button 
-                                                                            type='button'
-                                                                            onClick={()=>agregarEquipo1(heroe)}
-                                                                            className="btn btn-primary mb-2 ms-2"> + 
-                                                                        </button>
-                                                                    </div>
-                                                                    <div className='d-flex align-items-center justify-content-center'>
-                                                                    <h6>Equipo 2</h6>
-                                                                        <button 
-                                                                        type='button'
-                                                                        onClick={()=>agregarEquipo2(heroe)}
-                                                                        className="btn btn-primary mb-2 ms-2">+ </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            !heroes ? <span className='alert-warning'>No hay superheroes con ese nombre</span>  :
+                                            <div className='d-flex col-sm-10 flex-column row'>
+                                              
+                                              <div className='d-flex col-6 flex-column '>
+                                              { 
+                                             
+                                               mostrar.map((heroe, index) => (
+                                                       <TarjetaBusqueda 
+                                                            key={index}
+                                                            imagen={heroe.image.url}      
+                                                            nombre={heroe.name}
+                                                            heroe={heroe}
+                                                        />  
+                                                ))
+                                          
+                                           
+                                             }  
+                                            </div> 
+                                               {
+                                                   heroes.length > 6 &&  
+                                                <div>
+                                                   <button 
+                                                       type='submit' 
+                                                       onClick={()=>anterior(heroes)} 
+                                                       className="btn btn-primary">Anterior
+                                                   </button>
+                                                   <button 
+                                                       type='submit' 
+                                                       onClick={()=>siguiente(heroes)} 
+                                                       className="btn btn-primary">Siguiente
+                                                   </button>
                                                 </div>
-                                            ))
+                                               } 
+                                                 
+                                            </div>
+                                            
                                         }
                                         </div>
                                 }

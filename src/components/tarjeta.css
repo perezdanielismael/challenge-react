@@ -1,0 +1,17 @@
+.tarjeta{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 4px;
+  
+}
+.img-tarjeta{
+    border-radius: 50%;
+    height: 6rem;
+    width: 6rem;
+    border: 2px solid black;
+}

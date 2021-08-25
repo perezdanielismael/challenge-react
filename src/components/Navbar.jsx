@@ -1,7 +1,7 @@
 import { activoContext } from './context/ActivoProvider'
 import { withRouter } from 'react-router-dom'
 import { useContext } from 'react'
-
+import logo from './assets/alkemy.svg'
 const Navbar = (props) => {
    
     const {activo, setActivo} = useContext(activoContext)
@@ -13,13 +13,12 @@ const Navbar = (props) => {
     }
     
     return (
-        <nav className='d-flex justify-content-between mt-2 container'>
-            <h2>Hero</h2>
+        <nav className=' container d-flex mt-2  justify-content-between'>
+            <img className='img-logo ms-3' src="https://campus.alkemy.org/static/media/logo.a56b5107.svg" alt="" />
             <div>
-                <button className='btn btn-primary me-2'>Inicio</button>
               
         {
-            activo === true && <button className='btn btn-danger'onClick={() => cerrarSesion()}>Cerrar Sesión</button>
+            activo === true && <button className='btn btn-danger me-3'onClick={() => cerrarSesion()}>Cerrar Sesión</button>
         }  
                
             </div>

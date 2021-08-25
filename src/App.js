@@ -1,18 +1,17 @@
 import React from 'react'
 import Login from './components/Login'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Admin from './components/Admin';
 import ActivoProvider from './components/context/ActivoProvider';
+import Home from './components/Home';
+
 function App() {
   return (
 
     <ActivoProvider>
       <Router>
-        <Navbar />
         <Switch>
-          <Route path='/admin' exact>
-            <Admin/>
+          <Route path='/home' exact>
+            <Home/>
           </Route>
           <Route path='/' exact>
             <Login/>
