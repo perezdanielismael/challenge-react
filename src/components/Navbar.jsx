@@ -1,7 +1,6 @@
 import { activoContext } from './context/ActivoProvider'
 import { withRouter } from 'react-router-dom'
 import { useContext } from 'react'
-import logo from './assets/alkemy.svg'
 const Navbar = (props) => {
    
     const {activo, setActivo} = useContext(activoContext)

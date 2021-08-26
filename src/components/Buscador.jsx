@@ -3,10 +3,7 @@ import { Formik, Form, Field, FieldArray } from 'formik'
 import axios from 'axios'
 import TarjetaBusqueda from './TarjetaBusqueda'
 
-
-
 const Buscador = () => {
-
     let resultado = []
     let contador = 3
     let mostrar = []
@@ -15,13 +12,11 @@ const Buscador = () => {
                 resultado = await heroes.splice(0, contador)
                 mostrar = await resultado.slice(contador-3, resultado.length)
         }
-
         const anterior = async(heroes) =>{
             contador-=3
             resultado = await heroes.splice(0, contador)
             mostrar = await resultado.slice(contador-3, resultado.length)
         }
-
     return (
         <>
             <Formik
@@ -30,7 +25,7 @@ const Buscador = () => {
                     let errores = {}
                     //Validar correo
                     if(!valores.buscador){
-                        errores.buscador = '*Por favor escriba el nombre de un superheroe'
+                        errores.buscador = 'Escriba el nombre de un superheroe'
                         return errores
                     }
                 }}
@@ -50,18 +45,17 @@ const Buscador = () => {
                         <div>
                             <Field className=' form-control' 
                                     type='text'
-                                    placeholder='Nombre de Superhéroe'
+                                    placeholder='Buscar un Superhéroe'
                                     name='buscador'
                                     id='buscador'
                                     values={values.buscador}
                             >    
                             </Field>
-                            {errors.buscador && <div className='mt-1' style={{color: 'red'}}>{errors.buscador}</div>}
+                            {errors.buscador && <div className='mt-1 alert alert-warning'>{errors.buscador}</div>}
                             <div className='col-12 mt-2 d-grid'>
                                 <button type='submit' className="btn btn-primary">Buscar</button>
                             </div>
-                        </div>
-                      
+                        </div>       
                         <FieldArray name='heroes' >
                             {
                                 (fieldArrayProps) => {
@@ -90,8 +84,6 @@ const Buscador = () => {
                                                             heroe={heroe}
                                                         />  
                                                 ))
-                                          
-                                           
                                              }  
                                             </div> 
                                                {
