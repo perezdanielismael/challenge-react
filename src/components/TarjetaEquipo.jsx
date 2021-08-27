@@ -2,16 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import './tarjeta.css'
 const TarjetaEquipo = (props) => {
-
     const [detalle, setDetalle] = useState(false)
-
     const verDetalle = (item) =>{
         if(detalle === false){
             setDetalle(true)
         }else{
             setDetalle(false)
         }
-        
         console.log(item.name)
         console.log(item.appearance.height[1])
         console.log(item.appearance.weight[1])
@@ -20,7 +17,6 @@ const TarjetaEquipo = (props) => {
         console.log(item.appearance['hair-color'])
         console.log(item.work.base)
     }
-
     return (
         <div>
             {
@@ -51,14 +47,11 @@ const TarjetaEquipo = (props) => {
                     <p className='mb-0'>Strength: {!parseInt(props.strength) ? 0 : props.strength}</p>
                 </div>
             </div> 
-
-            }
-              
+            } 
             <div className='d-flex col-12'>
                 <button onClick={()=>verDetalle(props.item)} className="btn btn-primary mt-2 me-1">Detalle</button>
             </div>             
         </div>
     )
 }
-
 export default TarjetaEquipo

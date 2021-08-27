@@ -2,20 +2,19 @@ import React from 'react'
 import { Formik, Form, Field, FieldArray } from 'formik'
 import axios from 'axios'
 import TarjetaBusqueda from './TarjetaBusqueda'
-
+import './buscador.css'
+import { useState } from 'react'
 const Buscador = () => {
+    const [btnAnterior, setBtnAnterior] = useState(false)
+    const [btnSiguiente, setBtnSiguiente] = useState(false)
     let resultado = []
     let contador = 3
     let mostrar = []
         const siguiente = async(heroes) =>{
-                contador+=3
-                resultado = await heroes.splice(0, contador)
-                mostrar = await resultado.slice(contador-3, resultado.length)
+               
         }
         const anterior = async(heroes) =>{
-            contador-=3
-            resultado = await heroes.splice(0, contador)
-            mostrar = await resultado.slice(contador-3, resultado.length)
+          
         }
     return (
         <>
@@ -33,17 +32,19 @@ const Buscador = () => {
                     try {
                         const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
                         valores.heroes = await res.data.results
+                        console.log(valores.heroes)
+                        valores.buscador=''
+                        
                     } catch (error) {
                         console.log('Error ', error)
                     }
-                  
                 }}
             >
             {({values, errors})=>(
                 <Form className='row d-flex flex-row justify-content-center'>
-                    <div className="col-12 mt-4">
-                        <div>
-                            <Field className=' form-control' 
+                    <div className="col-12  mt-4 d-flex align-items-center flex-column" >
+                        <div className='col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
+                            <Field className=' form-control ' 
                                     type='text'
                                     placeholder='Buscar un Superhéroe'
                                     name='buscador'
@@ -67,13 +68,13 @@ const Buscador = () => {
                                     }else{
                                         mostrar = heroes
                                     }
-            
-                                    return <div className='mt-3 col-12  d-flex flex-column align-items-center'>
+                                    return <div className='mt-3 col-12 '>
                                         {
-                                            !heroes ? <span className='alert-warning'>No hay superheroes con ese nombre</span>  :
-                                            <div className='d-flex col-sm-10 flex-column row'>
+                                        !heroes ? <span className='alert alert-warning'>No hay superheroes con ese nombre</span>
+                                            :
+                                            <div className=' col-12 col-sm-10 '>
                                               
-                                              <div className='d-flex col-6 flex-column '>
+                                              <div className='col-12 contenedor-resultado'>
                                               { 
                                              
                                                mostrar.map((heroe, index) => (
@@ -88,16 +89,18 @@ const Buscador = () => {
                                             </div> 
                                                {
                                                    heroes.length > 6 &&  
-                                                <div>
+                                                <div className='botones-siguiente'>
                                                    <button 
                                                        type='submit' 
                                                        onClick={()=>anterior(heroes)} 
-                                                       className="btn btn-primary">Anterior
+                                                       disabled={btnAnterior}
+                                                       className="btn btn-dark">Anterior
                                                    </button>
                                                    <button 
                                                        type='submit' 
-                                                       onClick={()=>siguiente(heroes)} 
-                                                       className="btn btn-primary">Siguiente
+                                                       onClick={()=>siguiente(heroes)}
+                                                       disabled={btnSiguiente} 
+                                                       className="btn btn-dark">Siguiente
                                                    </button>
                                                 </div>
                                                } 
