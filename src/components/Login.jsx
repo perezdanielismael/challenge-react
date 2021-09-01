@@ -42,7 +42,6 @@ const Login = (props) => {
                         localStorage.setItem('token', token)
                         props.history.push('/home')
                     } catch (error) {
-                        console.log(error)
                         errorIngreso = 'Usuario y/o contraseña inválido'
                     }
                     

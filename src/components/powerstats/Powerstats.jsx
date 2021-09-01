@@ -1,9 +1,9 @@
 import React from 'react'
-import { activoContext } from './context/ActivoProvider'
+import { activoContext } from '../context/ActivoProvider'
 import { useContext } from 'react'
-
+import './powerstats.css'
 const Powerstats = (props) => {
-    const {equipo1, equipo2, promedio1, setPromedio1, promedio2, setPromedio2} = useContext(activoContext)
+    const {equipo1, equipo2, promedio1, setPromedio1, setPromedio2} = useContext(activoContext)
      //-----------------Equipo 2 Reduce --------------------------------------//
     const power1 = equipo1.reduce((acc, item) => {
       let temporal = !isNaN(parseInt(item.powerstats.power))
@@ -70,12 +70,10 @@ const Powerstats = (props) => {
       const calcularPromedio = (power, speed, strength, durability, intelligence, combat) =>{
         let resultado = Math.round((power + speed + strength + durability + intelligence + combat) / 6)
         setPromedio1(resultado)
-        console.log(promedio1)
     }
         const calcularPromedio2 = (power, speed, strength, durability, intelligence, combat) =>{
         let resultado = Math.round((power + speed + strength + durability + intelligence + combat) / 6)
         setPromedio2(resultado)
-        console.log(promedio2)
     }
        calcularPromedio(power1, speed1, strength1, durability1, intelligence1, combat1)
        calcularPromedio2(power2, speed2, strength2, durability2, intelligence2, combat2)
@@ -85,13 +83,18 @@ const Powerstats = (props) => {
             props.equipo === equipo1 ? 
                 <div>
                     {
-                        equipo1.length > 0 && <div>
+                        equipo1.length > 0 && 
+                        <div className='powerstats'>
+                          <div className='detalle-power'>
                             <h6>Combat: {combat1} </h6>
-                    <h6>Durability: {durability1}</h6>
-                    <h6>Power: {power1} </h6>
-                    <h6>Intelligence: {intelligence1}</h6>
-                    <h6>Speed: {speed1} </h6>
-                    <h6>Strength {strength1}</h6>
+                            <h6>Durability: {durability1}</h6>
+                            <h6>Power: {power1} </h6>
+                          </div>
+                            <div  className='detalle-power'>
+                              <h6>Intelligence: {intelligence1}</h6>
+                              <h6>Speed: {speed1} </h6>
+                              <h6>Strength {strength1}</h6>
+                            </div>
                         </div>
                     }
                     
@@ -99,13 +102,18 @@ const Powerstats = (props) => {
             :
                 <div>
                     {
-                        equipo2.length > 0 && <div>
-                        <h6>Combat: {combat2} </h6>
-                        <h6>Durability: {durability2}</h6>
-                        <h6>Power: {power2} </h6>
-                        <h6>Intelligence: {intelligence2}</h6>
-                        <h6>Speed: {speed2} </h6>
-                        <h6>Strength {strength2}</h6>
+                        equipo2.length > 0 && 
+                        <div className='powerstats'>
+                          <div className="detalle-poder text-start">
+                            <h6>Combat: {combat2} </h6>
+                            <h6>Durability: {durability2}</h6>
+                            <h6>Power: {power2} </h6>
+                          </div>
+                        <div className="detalle-poder text-start">
+                          <h6>Intelligence: {intelligence2}</h6>
+                          <h6>Speed: {speed2} </h6>
+                          <h6>Strength {strength2}</h6>
+                        </div>
                         </div>
                     }
                 </div>

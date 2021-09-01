@@ -3,18 +3,33 @@ import { Formik, Form, Field, FieldArray } from 'formik'
 import axios from 'axios'
 import TarjetaBusqueda from './TarjetaBusqueda'
 import './buscador.css'
+import { activoContext } from '../context/ActivoProvider'
+import { useContext } from 'react'
 import { useState } from 'react'
 const Buscador = () => {
+    const {error} = useContext(activoContext)
     const [btnAnterior, setBtnAnterior] = useState(false)
     const [btnSiguiente, setBtnSiguiente] = useState(false)
-    let resultado = []
     let contador = 3
     let mostrar = []
         const siguiente = async(heroes) =>{
-               
+            if(contador > heroes.length){
+                setBtnSiguiente(true)
+                return
+            }else{
+                setBtnSiguiente(false)
+                setBtnAnterior(false)
+            }
+           mostrar = heroes.slice(contador, contador+3)
+           contador+=3
         }
         const anterior = async(heroes) =>{
-          
+            if(contador < 6){
+                setBtnAnterior(true)
+                return
+            }else{ setBtnAnterior(false)}
+            contador-=3
+            mostrar = heroes.slice(contador, contador+3)
         }
     return (
         <>
@@ -32,19 +47,18 @@ const Buscador = () => {
                     try {
                         const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
                         valores.heroes = await res.data.results
-                        console.log(valores.heroes)
-                        valores.buscador=''
-                        
+                       
                     } catch (error) {
                         console.log('Error ', error)
                     }
+                  
                 }}
             >
             {({values, errors})=>(
                 <Form className='row d-flex flex-row justify-content-center'>
                     <div className="col-12  mt-4 d-flex align-items-center flex-column" >
                         <div className='col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
-                            <Field className=' form-control ' 
+                            <Field className=' form-control input' 
                                     type='text'
                                     placeholder='Buscar un Superhéroe'
                                     name='buscador'
@@ -54,7 +68,7 @@ const Buscador = () => {
                             </Field>
                             {errors.buscador && <div className='mt-1 alert alert-warning'>{errors.buscador}</div>}
                             <div className='col-12 mt-2 d-grid'>
-                                <button type='submit' className="btn btn-primary">Buscar</button>
+                                <button type='submit' className="btn btn-dark">Buscar</button>
                             </div>
                         </div>       
                         <FieldArray name='heroes' >
@@ -63,6 +77,7 @@ const Buscador = () => {
                                     const {form} = fieldArrayProps
                                     const {values} = form
                                     const {heroes} = values
+                                    
                                     if(heroes.length > 3){
                                         mostrar = heroes.slice(contador-3, contador)
                                     }else{
@@ -70,7 +85,7 @@ const Buscador = () => {
                                     }
                                     return <div className='mt-3 col-12 '>
                                         {
-                                        !heroes ? <span className='alert alert-warning'>No hay superheroes con ese nombre</span>
+                                            !heroes ? <span className='alert-warning'>No hay superheroes con ese nombre</span>
                                             :
                                             <div className=' col-12 col-sm-10 '>
                                               
@@ -86,6 +101,9 @@ const Buscador = () => {
                                                         />  
                                                 ))
                                              }  
+                                             {
+                                                 error ? <div className=' alert alert-warning'>{error}</div> : null
+                                             }
                                             </div> 
                                                {
                                                    heroes.length > 6 &&  

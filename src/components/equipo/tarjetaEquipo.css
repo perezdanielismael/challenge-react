@@ -1,0 +1,27 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+.info-heroe{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.img-tarjeta-equipo{
+    border-radius: 50%;
+    height: 7rem;
+    width: 7rem;
+    margin: 1rem 0 1rem 0;
+    border: 2px solid rgb(104, 100, 100);
+}
+.poder-individual{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+.items-detalle{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}

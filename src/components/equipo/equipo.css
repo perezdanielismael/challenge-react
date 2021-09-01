@@ -1,0 +1,32 @@
+.equipo{
+    background-color: rgb(104, 100, 100);
+    width: 90%;
+    border-radius: 4px;
+    padding: 1rem;
+}
+.titulo-equipo{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.fa-bolt{
+    font-size: 20px;
+    margin-right: .3rem;    
+}
+.fa-times{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: end;
+}
+.boton-eliminar{
+    display: flex;
+   justify-content: flex-end;
+}
+.item-lista{
+    background-color: rgba(0, 0, 0, 0.329);
+    border: 2px solid white;
+}

@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { activoContext } from './context/ActivoProvider'
 import { useContext } from 'react'
-import Equipo from './Equipo'
-import Buscador from './Buscador'
+import Equipo from './equipo/Equipo'
+import Buscador from './buscador/Buscador'
 import Navbar from './Navbar'
 
 const Home = (props) => {
@@ -14,9 +14,8 @@ const Home = (props) => {
     useEffect(()=>{
         setActivo(true)
         if(localStorage.getItem('token')){
-            console.log('El usuario ingreso de manera exitosa')
+           props.history.push('/Home')
         } else{
-            console.log('El usuario no ha ingresado de manera correcta')
             props.history.push('/')
             setActivo(false)
         }
