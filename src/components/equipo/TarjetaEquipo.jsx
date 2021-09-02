@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import '../buscador/tarjeta.css'
+import '../buscador/tarjetaBusqueda.css'
 import './tarjetaEquipo.css'
 const TarjetaEquipo = (props) => {
     const [detalle, setDetalle] = useState(false)

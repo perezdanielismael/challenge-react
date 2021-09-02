@@ -49,7 +49,7 @@ const Login = (props) => {
                 }}
                 >
                 {({errors,touched})=>(
-                    <Form className='col-10 ' >
+                    <Form className='col-10 col-sm-8 col-md-6 col-lg-3 ' >
                         <div className='mt-5'>
                             <label htmlFor="correo" className="form-label mb-0">Correo</label>
                             <Field
@@ -61,7 +61,7 @@ const Login = (props) => {
                             />
                             {touched.correo && errors.correo && <div className='mt-1 alert alert-danger' role='alert'>{errors.correo}</div>}
                         </div>
-                        <div className=' mt-3'>
+                        <div className='col-12 mt-3'>
                             <label htmlFor="password" className="form-label mb-0">Contraseña</label>
                             <Field 
                                 type="password" 

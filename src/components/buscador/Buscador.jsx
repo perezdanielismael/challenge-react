@@ -7,12 +7,13 @@ import { activoContext } from '../context/ActivoProvider'
 import { useContext } from 'react'
 import { useState } from 'react'
 const Buscador = () => {
-    const {error} = useContext(activoContext)
+    const {error, setError} = useContext(activoContext)
     const [btnAnterior, setBtnAnterior] = useState(false)
     const [btnSiguiente, setBtnSiguiente] = useState(false)
     let contador = 3
     let mostrar = []
         const siguiente = async(heroes) =>{
+            setError(null)
             if(contador > heroes.length){
                 setBtnSiguiente(true)
                 return
@@ -24,6 +25,7 @@ const Buscador = () => {
            contador+=3
         }
         const anterior = async(heroes) =>{
+            setError(null)
             if(contador < 6){
                 setBtnAnterior(true)
                 return
@@ -87,7 +89,7 @@ const Buscador = () => {
                                         {
                                             !heroes ? <span className='alert-warning'>No hay superheroes con ese nombre</span>
                                             :
-                                            <div className=' col-12 col-sm-10 '>
+                                            <div className=' col-12 col-sm-10 contenedor-busqueda'>
                                               
                                               <div className='col-12 contenedor-resultado'>
                                               { 
@@ -101,10 +103,14 @@ const Buscador = () => {
                                                         />  
                                                 ))
                                              }  
-                                             {
-                                                 error ? <div className=' alert alert-warning'>{error}</div> : null
-                                             }
+                                            
+                                             
                                             </div> 
+                                            <div>
+                                             {
+                                                 error ? <div className='col-12 col-sm-10 col-lg-8 alerta alert alert-warning'>{error}</div> : null
+                                             }
+                                             </div>
                                                {
                                                    heroes.length > 6 &&  
                                                 <div className='botones-siguiente'>
@@ -112,13 +118,13 @@ const Buscador = () => {
                                                        type='submit' 
                                                        onClick={()=>anterior(heroes)} 
                                                        disabled={btnAnterior}
-                                                       className="btn btn-dark">Anterior
+                                                       className="btn btn-dark">Previous
                                                    </button>
                                                    <button 
                                                        type='submit' 
                                                        onClick={()=>siguiente(heroes)}
                                                        disabled={btnSiguiente} 
-                                                       className="btn btn-dark">Siguiente
+                                                       className="btn btn-dark">Next
                                                    </button>
                                                 </div>
                                                } 

@@ -1,13 +1,12 @@
 import React from 'react'
 import { activoContext } from '../context/ActivoProvider'
 import { useContext } from 'react'
-import './tarjeta.css'
-
-
+import './tarjetaBusqueda.css'
 
 const TarjetaBusqueda = (props) => {
     let resultado = 0
     const {equipo1, setEquipo1, equipo2, setEquipo2, error, setError} = useContext(activoContext)
+    
     const promedioIndividual = (power,speed,intelligence,strength,durability, combat)=>{
         resultado = (power + speed + intelligence + strength + durability + combat) / 6
        return Math.round(resultado)
@@ -66,20 +65,20 @@ const TarjetaBusqueda = (props) => {
 
     return (
         <>
-             <div className="contenedor-tarjeta"  style={{width: '18rem'}}>  
+             <div className="contenedor-tarjeta" >  
             {
                 <div className='contenido-tarjeta'>
                     <div className='img-name'>
-                        <img src={props.imagen} className="img-tarjeta" alt="..."/>
+                        <img className="img-tarjeta" src={props.imagen}  alt="Imagen de un superheroe"/>
                         <h5 className="card-title">{props.nombre}</h5>
                     </div>
                     <div className="agregar">
                             <div className='section-btn'>
-                                <h6 className='mb-0'>Equipo 1</h6>
+                                <h6 className='mb-0'>Team 1</h6>
                                 <button type='button' onClick={()=>agregarEquipo1(props.heroe)} className="btn btn-dark"><i class="fas fa-plus"></i></button>
                             </div>
                             <div className='section-btn mt-1'>
-                                <h6 className='mb-0'>Equipo 2</h6>
+                                <h6 className='mb-0'>Team 2</h6>
                                 <button  type='button' onClick={()=>agregarEquipo2(props.heroe)} className="btn btn-dark"><i class="fas fa-plus"></i></button>
                             </div>
                     </div>

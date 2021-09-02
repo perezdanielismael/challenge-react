@@ -104,12 +104,12 @@ const Powerstats = (props) => {
                     {
                         equipo2.length > 0 && 
                         <div className='powerstats'>
-                          <div className="detalle-poder text-start">
+                          <div className="detalle-power">
                             <h6>Combat: {combat2} </h6>
                             <h6>Durability: {durability2}</h6>
                             <h6>Power: {power2} </h6>
                           </div>
-                        <div className="detalle-poder text-start">
+                        <div className="detalle-power">
                           <h6>Intelligence: {intelligence2}</h6>
                           <h6>Speed: {speed2} </h6>
                           <h6>Strength {strength2}</h6>

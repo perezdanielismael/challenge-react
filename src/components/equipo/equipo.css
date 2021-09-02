@@ -4,6 +4,9 @@
     border-radius: 4px;
     padding: 1rem;
 }
+.lista-grupo{
+    width: 100%;
+}
 .titulo-equipo{
     color: white;
     display: flex;
@@ -25,8 +28,29 @@
 .boton-eliminar{
     display: flex;
    justify-content: flex-end;
+   margin: auto;
 }
 .item-lista{
     background-color: rgba(0, 0, 0, 0.329);
     border: 2px solid white;
+    list-style: none;    
+}
+@media screen and (min-width: 768px){
+    .list-group{
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .list-group-item{
+        width: 40%;
+        margin: .5rem;
+        padding-top: 1rem ;
+        border-top: 2px solid white !important;
+        border-radius: 4px;
+    }
+}
+@media screen and (min-width: 1024px){
+    .list-group-item{
+        width: 23%;
+    }
 }

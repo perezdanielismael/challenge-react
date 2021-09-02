@@ -22,7 +22,7 @@ const Equipo = () => {
             promedio1 >= promedio2 ? 
         <div className='container row d-flex flex-column align-items-center'>  
             <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Equipo 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
+                <h2 className='titulo-equipo'>Team 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
                 <Powerstats equipo={equipo1}/>
                 <ul className="list-group lista-equipo">
                     {
@@ -50,7 +50,7 @@ const Equipo = () => {
                 </ul>
             </div>
             <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Equipo 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
+                <h2 className='titulo-equipo'>Team 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
                 <Powerstats equipo={equipo2}/>
                 <ul className="list-group lista-equipo">
                     {
@@ -80,13 +80,13 @@ const Equipo = () => {
         </div> :
         <div className='container row d-flex flex-column align-items-center'>  
         <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Equipo 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
+                <h2 className='titulo-equipo'>Team 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
                 <Powerstats equipo={equipo2}/>
                 <ul className="list-group lista-equipo">
                     {
                        equipo2.length === 0 ? '' :
                        equipo2.map((item)=>(
-                        <li key={item.id} className='list-group-item item-lista'>
+                        <li key={item.id} className='list-group-item item-lista border-top-1'>
                                 <div className='col-12 boton-eliminar'>
                                     <button onClick={()=>eliminarEquipo2(item.id)} className="btn btn-danger"><i className="fas fa-times"></i></button>
                                 </div>
@@ -108,7 +108,7 @@ const Equipo = () => {
                 </ul>
             </div>
         <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Equipo 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
+                <h2 className='titulo-equipo'>Team 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
                 <Powerstats equipo={equipo1}/>
                 <ul className="list-group lista-equipo">
                     {

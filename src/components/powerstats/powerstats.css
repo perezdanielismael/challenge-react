@@ -10,6 +10,12 @@
 .detalle-power{
     display: flex;
     flex-direction: column;
-    text-align: start;
-   
+    text-align: start; 
+}
+@media screen and (min-width:1024px) {
+    .detalle-power{
+       width: 50%;
+       flex-direction: row;
+       justify-content: space-around;
+    }
 }
