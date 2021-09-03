@@ -10,8 +10,7 @@ const TarjetaEquipo = (props) => {
         }else{
             setDetalle(false)
         }
-    }
-    
+    }  
     return (
         <div className='contenedor'>
             {

@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import './powerstats.css'
 const Powerstats = (props) => {
     const {equipo1, equipo2, setPromedio1, setPromedio2} = useContext(activoContext)
-     //-----------------Equipo 2 Reduce --------------------------------------//
+    // Reducer para calcular promedio de cada poder en equipo 1
     const power1 = equipo1.reduce((acc, item) => {
       let temporal = !isNaN(parseInt(item.powerstats.power))
         temporal ? acc += parseInt(item.powerstats.power) : acc += 0
@@ -35,7 +35,7 @@ const Powerstats = (props) => {
           temporal ? acc += parseInt(item.powerstats.combat) : acc += 0
         return  acc 
       },0)
-    //-----------------Equipo 2 Reduce --------------------------------------//
+    // Reducer para calcular promedio de cada poder en equipo 2
         const power2 = equipo2.reduce((acc, item) => {
         let temporal = !isNaN(parseInt(item.powerstats.power))
           temporal ? acc += parseInt(item.powerstats.power) : acc += 0
@@ -66,7 +66,7 @@ const Powerstats = (props) => {
           temporal ? acc += parseInt(item.powerstats.combat) : acc += 0
         return  acc 
       },0)
-      //--------------------------PROMEDIO---------------------------------//
+      // Funciones para calcular promedio por equipo
       const calcularPromedio = (power, speed, strength, durability, intelligence, combat) =>{
         let resultado = Math.round((power + speed + strength + durability + intelligence + combat) / 6)
         setPromedio1(resultado)
@@ -96,8 +96,7 @@ const Powerstats = (props) => {
                               <h6 className='mb-0'>Strength {strength1}</h6>
                             </div>
                         </div>
-                    }
-                    
+                    } 
                 </div>
             :
                 <div>

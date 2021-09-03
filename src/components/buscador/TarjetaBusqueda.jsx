@@ -12,6 +12,7 @@ const TarjetaBusqueda = (props) => {
         resultado = (power + speed + intelligence + strength + durability + combat) / 6
        return Math.round(resultado)
     }
+    //Función para agregar equipo al equipo 1 validando que no se repita el heroe y 6 heroes como máximo
     const agregarEquipo1 = async(heroe)=>{
         setError(null)
         let {power, speed, intelligence, strength, durability, combat} = heroe.powerstats
@@ -38,6 +39,7 @@ const TarjetaBusqueda = (props) => {
         setEquipo1([...equipo1, heroe])
        localStorage.setItem('equipo1', JSON.stringify(equipo1))
     }
+    //Función para agregar equipo al equipo 2 validando que no se repita el heroe y 6 heroes como máximo
     const agregarEquipo2 =async(heroe)=>{
         setError(null)
         let {power, speed, intelligence, strength, durability, combat} = heroe.powerstats
@@ -74,11 +76,9 @@ const TarjetaBusqueda = (props) => {
                     </div>
                     <div className="agregar">
                             <div className='section-btn'>
-                                <h6 className='mb-0'></h6>
                                 <button type='button' onClick={()=>agregarEquipo1(props.heroe)} className="btn btn-outline-light"><i class="fas fa-plus"></i> TEAM 1</button>
                             </div>
                             <div className='section-btn mt-1'>
-                                <h6 className='mb-0'></h6>
                                 <button  type='button' onClick={()=>agregarEquipo2(props.heroe)} className="btn btn-outline-light"><i class="fas fa-plus"></i> TEAM 2</button>
                             </div>
                     </div>

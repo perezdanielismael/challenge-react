@@ -4,32 +4,36 @@ import { useContext } from 'react'
 import TarjetaEquipo from './TarjetaEquipo'
 import Powerstats from '../powerstats/Powerstats'
 import './equipo.css'
-const Equipo = () => {
+const Equipos = () => {
     const {equipo1, setEquipo1, equipo2, setEquipo2, promedio1, promedio2} = useContext(activoContext)
+    //Funciones para eliminar un heroe del equipo
+    let eliminarEquipo1 = (id)=>{
+        let nuevoArray = equipo1.filter(item => id !== item.id)
+        setEquipo1([...nuevoArray])
+        localStorage.setItem('equipo1', JSON.stringify(equipo1))
+        return setEquipo1
+     }
     let eliminarEquipo2 = (id)=>{
         let nuevoArray2 = equipo2.filter(item => id !== item.id)
         setEquipo2([...nuevoArray2])
         localStorage.setItem('equipo2', JSON.stringify(equipo2))
         return setEquipo2
      }
-    let eliminarEquipo1 = (id)=>{
-       let nuevoArray = equipo1.filter(item => id !== item.id)
-       setEquipo1([...nuevoArray])
-       localStorage.setItem('equipo1', JSON.stringify(equipo1))
-       return setEquipo1
-    }
+ //Recorre los equipos para agregar peso y altura promedio 
     let peso = 0, altura = 0, peso2 = 0, altura2 = 0
-        equipo1.map((item)=>(
-            peso = peso + parseInt(item.appearance.weight[1]),
+        equipo1.map((item)=>{
+            peso = peso + parseInt(item.appearance.weight[1])
             altura = altura + parseInt(item.appearance.height[1])
-        ))
+            return {peso, altura} 
+        })
         peso = Math.round( peso / equipo1.length)
         altura = Math.round(altura / equipo1.length)
         
-        equipo2.map((item)=>(
-            peso2 = peso2 + parseInt(item.appearance.weight[1]),
+        equipo2.map((item)=>{
+            peso2 = peso2 + parseInt(item.appearance.weight[1])
             altura2 = altura2 + parseInt(item.appearance.height[1])
-        ))
+            return {peso2, altura2}
+        })
         peso2 = Math.round( peso2 / equipo2.length)
         altura2 = Math.round(altura2 / equipo2.length)
     return (
@@ -188,4 +192,4 @@ const Equipo = () => {
     </div>  
     )
 }
-export default Equipo
+export default Equipos

@@ -28,7 +28,7 @@
 .agregar{
     display: flex;
     width: 50%;
-    justify-content: end;
+    justify-content: flex-end;
     flex-direction: column;
 }
 .img-tarjeta{

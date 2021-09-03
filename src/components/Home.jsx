@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { activoContext } from './context/ActivoProvider'
 import { useContext } from 'react'
-import Equipo from './equipo/Equipo'
+import Equipos from './equipo/Equipos'
 import Buscador from './buscador/Buscador'
 import Navbar from './Navbar'
 
@@ -26,7 +26,7 @@ const Home = (props) => {
         <div className='row d-flex text-center align-items-center flex-column'>
             <Navbar />
             <Buscador/>
-            <Equipo/>
+            <Equipos/>
         </div>
     )
 }

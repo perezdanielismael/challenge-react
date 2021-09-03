@@ -49,11 +49,9 @@ const Buscador = () => {
                     try {
                         const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
                         valores.heroes = await res.data.results
-                        console.log(valores.heroes)
                     } catch (error) {
                         console.log('Error ', error)
-                    }
-                  
+                    } 
                 }}
             >
             {({values, errors})=>(
@@ -121,10 +119,8 @@ const Buscador = () => {
                                                        className="btn btn-dark btn-width">Next
                                                    </button>
                                                 </div>
-                                               } 
-                                                 
+                                               }                                                  
                                             </div>
-                                            
                                         }
                                         </div>
                                 }
@@ -137,5 +133,4 @@ const Buscador = () => {
         </>
     )
 }
-
 export default Buscador

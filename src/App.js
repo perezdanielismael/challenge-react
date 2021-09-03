@@ -6,7 +6,6 @@ import Home from './components/Home';
 
 function App() {
   return (
-
     <ActivoProvider>
       <Router>
         <Switch>
@@ -18,9 +17,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-   
     </ActivoProvider>
-    
   );
 }
 
