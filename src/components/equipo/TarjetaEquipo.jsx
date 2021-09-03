@@ -11,6 +11,7 @@ const TarjetaEquipo = (props) => {
             setDetalle(false)
         }
     }
+    
     return (
         <div className='contenedor'>
             {
@@ -48,7 +49,7 @@ const TarjetaEquipo = (props) => {
             <div className='col-12 mt-3 mb-3 d-grid'>
                 <button onClick={()=>verDetalle(props.item)} className="btn btn-primary">
                     {
-                        detalle === true ? 'Poderes' : 'Detalle'
+                        detalle === true ? 'Powers' : 'Details'
                 }</button>
             </div>             
         </div>

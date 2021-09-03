@@ -51,7 +51,7 @@ const Login = (props) => {
                 {({errors,touched})=>(
                     <Form className='col-10 col-sm-8 col-md-6 col-lg-3 ' >
                         <div className='mt-5'>
-                            <label htmlFor="correo" className="form-label mb-0">Correo</label>
+                            <label htmlFor="correo" className="form-label mb-0">Email</label>
                             <Field
                                 type="email" 
                                 id='correo' 
@@ -62,7 +62,7 @@ const Login = (props) => {
                             {touched.correo && errors.correo && <div className='mt-1 alert alert-danger' role='alert'>{errors.correo}</div>}
                         </div>
                         <div className='col-12 mt-3'>
-                            <label htmlFor="password" className="form-label mb-0">Contraseña</label>
+                            <label htmlFor="password" className="form-label mb-0">Password</label>
                             <Field 
                                 type="password" 
                                 id='password' 
@@ -72,7 +72,7 @@ const Login = (props) => {
                             {touched.password && errors.password && <div className='mt-1 alert alert-danger'>{errors.password}</div>}
                         </div>
                         <div className="mt-4 d-grid">
-                            <button type='submit' className="btn btn-primary" >Ingresar</button>
+                            <button type='submit' className="btn btn-primary" >Sign in</button>
                         </div>
                         {errorIngreso && <div className='mt-1 alert alert-danger'>{errorIngreso}</div>}
                     </Form>

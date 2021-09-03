@@ -18,11 +18,34 @@ const Equipo = () => {
        localStorage.setItem('equipo1', JSON.stringify(equipo1))
        return setEquipo1
     }
+    let peso = 0, altura = 0, peso2 = 0, altura2 = 0
+        equipo1.map((item)=>(
+            peso = peso + parseInt(item.appearance.weight[1]),
+            altura = altura + parseInt(item.appearance.height[1])
+        ))
+        peso = Math.round( peso / equipo1.length)
+        altura = Math.round(altura / equipo1.length)
+        
+        equipo2.map((item)=>(
+            peso2 = peso2 + parseInt(item.appearance.weight[1]),
+            altura2 = altura2 + parseInt(item.appearance.height[1])
+        ))
+        peso2 = Math.round( peso2 / equipo2.length)
+        altura2 = Math.round(altura2 / equipo2.length)
     return (
             promedio1 >= promedio2 ? 
         <div className='container row d-flex flex-column align-items-center'>  
             <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Team 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
+                <div className='titulo-equipo'>
+                    <div className='equipo-promedio'>
+                        <h2>Team 1</h2>  
+                        <span className='promedio'><i className="fas fa-bolt"></i><h2 className='mb-1'>{promedio1}</h2></span>
+                    </div>
+                    <div className='peso-altura'>
+                        {peso > 0 && <h6 className='mb-0'>Weight: {peso}Kg</h6> } 
+                        {altura > 0 && <h6 className='mb-0'>Heigth: {altura}Cm</h6> } 
+                    </div>
+                </div> 
                 <Powerstats equipo={equipo1}/>
                 <ul className="list-group lista-equipo">
                     {
@@ -50,7 +73,16 @@ const Equipo = () => {
                 </ul>
             </div>
             <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Team 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
+                <div className='titulo-equipo'>
+                    <div className='equipo-promedio'>
+                        <h2>Team 2</h2>  
+                        <span className='promedio'><i className="fas fa-bolt"></i><h2 className='mb-1'>{promedio2}</h2></span>
+                    </div>
+                    <div className='peso-altura'>
+                        {peso2 > 0 && <h6 className='mb-0'>Weight: {peso2}Kg</h6> } 
+                        {altura2 > 0 && <h6 className='mb-0'>Heigth: {altura2}Cm</h6> } 
+                    </div>
+                </div>  
                 <Powerstats equipo={equipo2}/>
                 <ul className="list-group lista-equipo">
                     {
@@ -80,7 +112,16 @@ const Equipo = () => {
         </div> :
         <div className='container row d-flex flex-column align-items-center'>  
         <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Team 2 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio2}</span></h2> 
+                <div className='titulo-equipo'>
+                    <div className='equipo-promedio'>
+                        <h2>Team 2</h2>  
+                        <span className='promedio'><i className="fas fa-bolt"></i><h2 className='mb-1'>{promedio2}</h2></span>
+                    </div>
+                    <div className='peso-altura'>
+                        {peso2 > 0 && <h6 className='mb-0'>Weight: {peso2}Kg</h6> } 
+                        {altura2 > 0 && <h6 className='mb-0'>Heigth: {altura2}Cm</h6> } 
+                    </div>
+                </div>  
                 <Powerstats equipo={equipo2}/>
                 <ul className="list-group lista-equipo">
                     {
@@ -108,7 +149,16 @@ const Equipo = () => {
                 </ul>
             </div>
         <div className="col-12 mt-4 equipo">
-                <h2 className='titulo-equipo'>Team 1 <span className='promedio-equipo'><i className="fas fa-bolt"></i>{promedio1}</span></h2> 
+                <div className='titulo-equipo'>
+                    <div className='equipo-promedio'>
+                        <h2>Team 1</h2>  
+                        <span className='promedio'><i className="fas fa-bolt"></i><h2 className='mb-1'>{promedio1}</h2></span>
+                    </div>
+                    <div className='peso-altura'>
+                        {peso > 0 && <h6 className='mb-0'>Weight: {peso}Kg</h6> } 
+                        {altura > 0 && <h6 className='mb-0'>Heigth: {altura}Cm</h6> } 
+                    </div>
+                </div> 
                 <Powerstats equipo={equipo1}/>
                 <ul className="list-group lista-equipo">
                     {

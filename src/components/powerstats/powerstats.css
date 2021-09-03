@@ -1,8 +1,8 @@
 .powerstats{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: 4px;
-    padding: 1rem;
+    padding: .5rem;
     color: white;
     border: 2px solid white;
     margin-bottom: .5rem;
@@ -11,6 +11,11 @@
     display: flex;
     flex-direction: column;
     text-align: start; 
+}
+@media screen and (min-width:768px) {
+    .powerstats{
+        justify-content: space-around;
+    }
 }
 @media screen and (min-width:1024px) {
     .detalle-power{

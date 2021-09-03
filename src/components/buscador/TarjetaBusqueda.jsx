@@ -5,6 +5,7 @@ import './tarjetaBusqueda.css'
 
 const TarjetaBusqueda = (props) => {
     let resultado = 0
+    let advertencia = ''
     const {equipo1, setEquipo1, equipo2, setEquipo2, error, setError} = useContext(activoContext)
     
     const promedioIndividual = (power,speed,intelligence,strength,durability, combat)=>{
@@ -24,12 +25,12 @@ const TarjetaBusqueda = (props) => {
         
         const valor = equipo1.find(item => item.id === heroe.id)
         if(valor){
-            let advertencia = 'No se puede agregar dos veces al mismo jugador'
+            advertencia = 'No se puede agregar dos veces al mismo jugador'
             setError(advertencia)
             return error
         }
         if(equipo1.length > 5){
-           let advertencia = 'El maximo permitido son 6 superheroes'
+           advertencia = 'El maximo permitido son 6 superheroes'
            setError(advertencia)
            return error
         }
@@ -50,7 +51,6 @@ const TarjetaBusqueda = (props) => {
         const valor = equipo2.find(item => item.id === heroe.id)
         if(valor){
             let advertencia = 'No se puede agregar dos veces al mismo jugador'
-            
             setError(advertencia)
             return error
         }
@@ -70,16 +70,16 @@ const TarjetaBusqueda = (props) => {
                 <div className='contenido-tarjeta'>
                     <div className='img-name'>
                         <img className="img-tarjeta" src={props.imagen}  alt="Imagen de un superheroe"/>
-                        <h5 className="card-title">{props.nombre}</h5>
+                        <h5 className="card-title mb-0">{props.nombre}</h5>
                     </div>
                     <div className="agregar">
                             <div className='section-btn'>
-                                <h6 className='mb-0'>Team 1</h6>
-                                <button type='button' onClick={()=>agregarEquipo1(props.heroe)} className="btn btn-dark"><i class="fas fa-plus"></i></button>
+                                <h6 className='mb-0'></h6>
+                                <button type='button' onClick={()=>agregarEquipo1(props.heroe)} className="btn btn-outline-light"><i class="fas fa-plus"></i> TEAM 1</button>
                             </div>
                             <div className='section-btn mt-1'>
-                                <h6 className='mb-0'>Team 2</h6>
-                                <button  type='button' onClick={()=>agregarEquipo2(props.heroe)} className="btn btn-dark"><i class="fas fa-plus"></i></button>
+                                <h6 className='mb-0'></h6>
+                                <button  type='button' onClick={()=>agregarEquipo2(props.heroe)} className="btn btn-outline-light"><i class="fas fa-plus"></i> TEAM 2</button>
                             </div>
                     </div>
                    

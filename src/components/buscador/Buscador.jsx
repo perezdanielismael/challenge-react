@@ -39,7 +39,7 @@ const Buscador = () => {
                 initialValues={{ buscador: '', heroes:[]}}
                 validate={(valores)=>{
                     let errores = {}
-                    //Validar correo
+                    //Validar el campo de busqueda
                     if(!valores.buscador){
                         errores.buscador = 'Escriba el nombre de un superheroe'
                         return errores
@@ -49,7 +49,7 @@ const Buscador = () => {
                     try {
                         const res = await axios.get(`https://superheroapi.com/api/2016649095160560/search/${valores.buscador}`)
                         valores.heroes = await res.data.results
-                       
+                        console.log(valores.heroes)
                     } catch (error) {
                         console.log('Error ', error)
                     }
@@ -60,17 +60,18 @@ const Buscador = () => {
                 <Form className='row d-flex flex-row justify-content-center'>
                     <div className="col-12  mt-4 d-flex align-items-center flex-column" >
                         <div className='col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4'>
-                            <Field className=' form-control input' 
-                                    type='text'
-                                    placeholder='Buscar un Superhéroe'
-                                    name='buscador'
-                                    id='buscador'
-                                    values={values.buscador}
+                            <Field 
+                                className=' form-control input' 
+                                type='text'
+                                placeholder='Buscar un Superhéroe'
+                                name='buscador'
+                                id='buscador'
+                                values={values.buscador}
                             >    
                             </Field>
                             {errors.buscador && <div className='mt-1 alert alert-warning'>{errors.buscador}</div>}
                             <div className='col-12 mt-2 d-grid'>
-                                <button type='submit' className="btn btn-dark">Buscar</button>
+                                <button type='submit' className="btn btn-dark">Search</button>
                             </div>
                         </div>       
                         <FieldArray name='heroes' >
@@ -79,15 +80,10 @@ const Buscador = () => {
                                     const {form} = fieldArrayProps
                                     const {values} = form
                                     const {heroes} = values
-                                    
-                                    if(heroes.length > 3){
-                                        mostrar = heroes.slice(contador-3, contador)
-                                    }else{
-                                        mostrar = heroes
-                                    }
-                                    return <div className='mt-3 col-12 '>
+                                    heroes && heroes.length > 3 ? (mostrar = heroes.slice(contador-3, contador)) : (mostrar = heroes)
+                                    return <div className='mt-3 col-12 d-flex justify-content-center'>
                                         {
-                                            !heroes ? <span className='alert-warning'>No hay superheroes con ese nombre</span>
+                                            !heroes ? <div className='alert alert-warning mt-1 col-sm-8 col-lg-6'>No hay superheroes con ese nombre</div>
                                             :
                                             <div className=' col-12 col-sm-10 contenedor-busqueda'>
                                               
@@ -103,8 +99,6 @@ const Buscador = () => {
                                                         />  
                                                 ))
                                              }  
-                                            
-                                             
                                             </div> 
                                             <div>
                                              {
@@ -118,13 +112,13 @@ const Buscador = () => {
                                                        type='submit' 
                                                        onClick={()=>anterior(heroes)} 
                                                        disabled={btnAnterior}
-                                                       className="btn btn-dark">Previous
+                                                       className="btn btn-dark btn-width">Previous
                                                    </button>
                                                    <button 
                                                        type='submit' 
                                                        onClick={()=>siguiente(heroes)}
                                                        disabled={btnSiguiente} 
-                                                       className="btn btn-dark">Next
+                                                       className="btn btn-dark btn-width">Next
                                                    </button>
                                                 </div>
                                                } 

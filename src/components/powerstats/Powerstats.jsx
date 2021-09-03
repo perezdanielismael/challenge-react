@@ -3,7 +3,7 @@ import { activoContext } from '../context/ActivoProvider'
 import { useContext } from 'react'
 import './powerstats.css'
 const Powerstats = (props) => {
-    const {equipo1, equipo2, promedio1, setPromedio1, setPromedio2} = useContext(activoContext)
+    const {equipo1, equipo2, setPromedio1, setPromedio2} = useContext(activoContext)
      //-----------------Equipo 2 Reduce --------------------------------------//
     const power1 = equipo1.reduce((acc, item) => {
       let temporal = !isNaN(parseInt(item.powerstats.power))
@@ -86,14 +86,14 @@ const Powerstats = (props) => {
                         equipo1.length > 0 && 
                         <div className='powerstats'>
                           <div className='detalle-power'>
-                            <h6>Combat: {combat1} </h6>
-                            <h6>Durability: {durability1}</h6>
-                            <h6>Power: {power1} </h6>
+                            <h6 className='mb-0'>Combat: {combat1} </h6>
+                            <h6 className='mb-0'>Durability: {durability1}</h6>
+                            <h6 className='mb-0'>Power: {power1} </h6>
                           </div>
                             <div  className='detalle-power'>
-                              <h6>Intelligence: {intelligence1}</h6>
-                              <h6>Speed: {speed1} </h6>
-                              <h6>Strength {strength1}</h6>
+                              <h6 className='mb-0'>Intelligence: {intelligence1}</h6>
+                              <h6 className='mb-0'>Speed: {speed1} </h6>
+                              <h6 className='mb-0'>Strength {strength1}</h6>
                             </div>
                         </div>
                     }
@@ -105,14 +105,14 @@ const Powerstats = (props) => {
                         equipo2.length > 0 && 
                         <div className='powerstats'>
                           <div className="detalle-power">
-                            <h6>Combat: {combat2} </h6>
-                            <h6>Durability: {durability2}</h6>
-                            <h6>Power: {power2} </h6>
+                            <h6 className='mb-0'>Combat: {combat2} </h6>
+                            <h6 className='mb-0'>Durability: {durability2}</h6>
+                            <h6 className='mb-0'>Power: {power2} </h6>
                           </div>
                         <div className="detalle-power">
-                          <h6>Intelligence: {intelligence2}</h6>
-                          <h6>Speed: {speed2} </h6>
-                          <h6>Strength {strength2}</h6>
+                          <h6 className='mb-0'>Intelligence: {intelligence2}</h6>
+                          <h6 className='mb-0'>Speed: {speed2} </h6>
+                          <h6 className='mb-0'>Strength {strength2}</h6>
                         </div>
                         </div>
                     }

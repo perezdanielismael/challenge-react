@@ -17,7 +17,7 @@ const Navbar = (props) => {
             <div>
               
         {
-            activo === true && <button className='btn btn-danger me-3'onClick={() => cerrarSesion()}>Cerrar Sesión</button>
+            activo === true && <button className='btn btn-danger me-3'onClick={() => cerrarSesion()}>Sign off</button>
         }  
                
             </div>
